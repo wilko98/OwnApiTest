@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">OwnApiTest</string>
+    <string name="name">Name</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="registration">Registration</string>
+    <string name="hint_name">John Smit</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Sign in</string>
+</resources>
