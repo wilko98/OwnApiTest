@@ -3,13 +3,10 @@ package com.example.ownapitest
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.fr_login.*
 import retrofit2.Call
 import retrofit2.Response
@@ -40,16 +37,15 @@ class LoginFragment : Fragment() {
                                 Toast.makeText(context,response.body().toString(),Toast.LENGTH_LONG).show()
                                 (activity!!.applicationContext as
                                         ApplicationSingleton).setCurrentUser(response.body())
-
-                                ContainerActivity.changeFragment(ProfileFragment.newInstance())
-
+                                val intent = Intent(context, MainActivity::class.java)
+                                startActivity(intent)
                             }
                         })
             }
         }
         btn_sign_up.setOnClickListener { v ->
             run {
-                ContainerActivity.changeFragment(RegistrationFragment.newInstance())
+                LoginActivity.changeFragment(RegistrationFragment.newInstance())
             }
         }
     }

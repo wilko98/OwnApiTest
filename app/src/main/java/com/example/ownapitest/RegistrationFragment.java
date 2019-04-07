@@ -1,15 +1,17 @@
 package com.example.ownapitest;
 
-import android.app.Application;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -22,6 +24,7 @@ public class RegistrationFragment extends Fragment {
     private EditText mEmail;
     private EditText mPassword;
     private Button mButton;
+    private TextView mSecondPassword;
 
     public static RegistrationFragment newInstance() {
 
@@ -37,6 +40,7 @@ public class RegistrationFragment extends Fragment {
         mName = v.findViewById(R.id.et_name);
         mEmail = v.findViewById(R.id.et_email);
         mPassword = v.findViewById(R.id.et_password);
+        mSecondPassword = v.findViewById(R.id.et_password_again);
         mButton = v.findViewById(R.id.btn_sign_in);
         return v;
     }
@@ -46,7 +50,23 @@ public class RegistrationFragment extends Fragment {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrateUser(new User(mEmail.getText().toString(), mName.getText().toString(), mPassword.getText().toString()));
+                if (TextUtils.isEmpty(mName.getText())){
+                    mName.setError("Name is empty");
+                }
+                else if (TextUtils.isEmpty(mEmail.getText())){
+                    mEmail.setError("Email is empty");
+                }
+                else if (TextUtils.isEmpty(mPassword.getText())){
+                    mPassword.setError("Password is empty");
+                }
+                else if(mPassword.getText().length()<8){
+                    mPassword.setError("Password shod be at least 8 characters long");
+                }
+                else if(!TextUtils.equals(mPassword.getText(),mSecondPassword.getText())){
+                    mSecondPassword.setError("Passwords are not the same");
+                } else {
+                    registrateUser(new User(mEmail.getText().toString(), mName.getText().toString(), mPassword.getText().toString()));
+                }
             }
         });
     }
@@ -63,13 +83,9 @@ public class RegistrationFragment extends Fragment {
                         ((ApplicationSingleton)getActivity().getApplicationContext()).setCurrentUser(response.body());
                         User cu = response.body();
                         Toast.makeText(getActivity(), cu.toString(), Toast.LENGTH_SHORT).show();
-
                         ((ApplicationSingleton)getActivity().getApplicationContext()).setCurrentUser(cu);
-                        ContainerActivity.changeFragment(ProfileFragment.newInstance());
-//                        (activity!!.applicationContext as
-//                        ApplicationSingleton).setCurrentUser(response.body())
-//
-//                        ContainerActivity.changeFragment(ProfileFragment.newInstance())
+                        Intent intent = new Intent(getActivity(),MainActivity.class);
+                        startActivity(intent);
 
                     }
                     @Override

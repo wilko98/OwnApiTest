@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class ProfileFragment extends Fragment {
 
     private TextView profileName;
+    private TextView profileEmail;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -22,11 +23,14 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fr_profile,container,false);
         profileName = v.findViewById(R.id.user_name);
+        profileEmail = v.findViewById(R.id.user_email);
         return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        profileName.setText(((ApplicationSingleton)getActivity().getApplicationContext()).getCurrentUser().getName());
+        User user = ((ApplicationSingleton)getActivity().getApplicationContext()).getCurrentUser();
+        profileName.setText("Name: "+user.getName());
+        profileEmail.setText("Email: "+user.getEmail());
     }
 }
