@@ -9,4 +9,5 @@
     <string name="login">Login</string>
     <string name="sign_in">Sign in</string>
     <string name="passwordAgain">Password again</string>
+    <string name="tv_login">Login</string>
 </resources>

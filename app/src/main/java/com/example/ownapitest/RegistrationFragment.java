@@ -60,7 +60,7 @@ public class RegistrationFragment extends Fragment {
                     mPassword.setError("Password is empty");
                 }
                 else if(mPassword.getText().length()<8){
-                    mPassword.setError("Password shod be at least 8 characters long");
+                    mPassword.setError("Password should be at least 8 characters long");
                 }
                 else if(!TextUtils.equals(mPassword.getText(),mSecondPassword.getText())){
                     mSecondPassword.setError("Passwords are not the same");
@@ -71,7 +71,6 @@ public class RegistrationFragment extends Fragment {
         });
     }
 
-
     private void registrateUser(User user) {
         NetworkService.getInstance()
                 .getNetworkApi()
@@ -79,18 +78,23 @@ public class RegistrationFragment extends Fragment {
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        Toast.makeText(getActivity(), response.body().toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), response.body().toString(), Toast.LENGTH_SHORT).show();
                         ((ApplicationSingleton)getActivity().getApplicationContext()).setCurrentUser(response.body());
-                        User cu = response.body();
-                        Toast.makeText(getActivity(), cu.toString(), Toast.LENGTH_SHORT).show();
-                        ((ApplicationSingleton)getActivity().getApplicationContext()).setCurrentUser(cu);
-                        Intent intent = new Intent(getActivity(),MainActivity.class);
-                        startActivity(intent);
-
+                        if (response.body().getName()!=null) {
+                            User cu = response.body();
+                            Toast.makeText(getActivity(), cu.toString(), Toast.LENGTH_SHORT).show();
+                            ((ApplicationSingleton) getActivity().getApplicationContext()).setCurrentUser(cu);
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(getContext(), response.body().getmError(), Toast.LENGTH_SHORT).show();
+                        }
+//                        Toast.makeText(getContext(), response.body().toString(), Toast.LENGTH_SHORT).show();
                     }
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        Toast.makeText(getActivity(), "Fail: " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), call.request().body().toString(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

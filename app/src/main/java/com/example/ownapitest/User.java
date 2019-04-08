@@ -13,6 +13,10 @@ public class User implements Serializable {
     private String mEmail;
     @SerializedName("password")
     private String mPassword;
+    @SerializedName("error_msg")
+    private String mError;
+
+
 
     public User(String email, @Nullable String name, String password) {
         mEmail = email;
@@ -25,7 +29,9 @@ public class User implements Serializable {
         mPassword = password;
     }
 
-
+    public User(String mError) {
+        this.mError = mError;
+    }
 
 
     public String getEmail() {
@@ -50,6 +56,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         mPassword = password;
+    }
+
+    public String getmError() {
+        return mError;
+    }
+
+    public void setmError(String mError) {
+        this.mError = mError;
     }
 
     @Override

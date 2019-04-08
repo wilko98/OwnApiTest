@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction()
                 .setCustomAnimations(R.anim.design_bottom_sheet_slide_in,
                         R.anim.design_bottom_sheet_slide_out)
-                .replace(R.id.container, fragment)
+                .add(R.id.container, fragment)
                 .addToBackStack(fragment.getClass().getSimpleName())
                 .commit();
     }

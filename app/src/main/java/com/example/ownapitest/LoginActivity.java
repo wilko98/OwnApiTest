@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         if (savedInstanceState == null) {
             fm.beginTransaction()
-                    .add(R.id.container, LoginFragment.Companion.newInstance())
+                    .add(R.id.container, InitFragment.Companion.newInstance())
                     .commit();
         }
 
@@ -26,8 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public static void changeFragment(Fragment fragment) {
         fm.beginTransaction()
-                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in,
-                        R.anim.design_bottom_sheet_slide_out)
+                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
                 .replace(R.id.container, fragment)
                 .addToBackStack(fragment.getClass().getSimpleName())
                 .commit();
