@@ -1,10 +1,11 @@
-package com.example.ownapitest
+package com.example.ownapitest.ui.Login
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.ownapitest.R
 import kotlinx.android.synthetic.main.fr_init.*
 
 class InitFragment : Fragment() {
@@ -21,7 +22,7 @@ class InitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         btn_sign_in.setOnClickListener { v ->
             run {
-                LoginActivity.changeFragment(LoginFragment.newInstance())
+                LoginActivity.changeFragment(SgnInFragment.newInstance())
             }
         }
         btn_sign_up.setOnClickListener { v ->

@@ -1,6 +1,5 @@
-package com.example.ownapitest;
+package com.example.ownapitest.ui.Login;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.ownapitest.ApplicationSingleton;
+import com.example.ownapitest.Model.User;
+import com.example.ownapitest.Network.NetworkService;
+import com.example.ownapitest.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,37 +69,12 @@ public class RegistrationFragment extends Fragment {
                 else if(!TextUtils.equals(mPassword.getText(),mSecondPassword.getText())){
                     mSecondPassword.setError("Passwords are not the same");
                 } else {
-                    registrateUser(new User(mEmail.getText().toString(), mName.getText().toString(), mPassword.getText().toString()));
+                    User cu = new User(mEmail.getText().toString(), mName.getText().toString(), mPassword.getText().toString());
+                    LoginActivity.changeFragment(LoginFragment.Companion.newInstance(cu));
                 }
             }
         });
     }
 
-    private void registrateUser(User user) {
-        NetworkService.getInstance()
-                .getNetworkApi()
-                .registration(user)
-                .enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-//                        Toast.makeText(getActivity(), response.body().toString(), Toast.LENGTH_SHORT).show();
-                        ((ApplicationSingleton)getActivity().getApplicationContext()).setCurrentUser(response.body());
-                        if (response.body().getName()!=null) {
-                            User cu = response.body();
-                            Toast.makeText(getActivity(), cu.toString(), Toast.LENGTH_SHORT).show();
-                            ((ApplicationSingleton) getActivity().getApplicationContext()).setCurrentUser(cu);
-                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                            startActivity(intent);
-                        }
-                        else {
-                            Toast.makeText(getContext(), response.body().getmError(), Toast.LENGTH_SHORT).show();
-                        }
-//                        Toast.makeText(getContext(), response.body().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Toast.makeText(getActivity(), call.request().body().toString(), Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
+
 }

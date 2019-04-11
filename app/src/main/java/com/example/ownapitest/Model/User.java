@@ -1,4 +1,4 @@
-package com.example.ownapitest;
+package com.example.ownapitest.Model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class User implements Serializable {
     @SerializedName("fullname")
     private String mName;
+    @SerializedName("login")
+    private String mLogin;
     @SerializedName("email")
     private String mEmail;
     @SerializedName("password")
@@ -33,13 +35,20 @@ public class User implements Serializable {
         this.mError = mError;
     }
 
-
     public String getEmail() {
         return mEmail;
     }
 
     public void setEmail(String email) {
         mEmail = email;
+    }
+
+    public String getLogin() {
+        return mLogin;
+    }
+
+    public void setLogin(String mLogin) {
+        this.mLogin = mLogin;
     }
 
     public String getName() {
@@ -58,12 +67,12 @@ public class User implements Serializable {
         mPassword = password;
     }
 
-    public String getmError() {
+    public String getError() {
         return mError;
     }
 
-    public void setmError(String mError) {
-        this.mError = mError;
+    public void setError(String Error) {
+        this.mError = Error;
     }
 
     @Override

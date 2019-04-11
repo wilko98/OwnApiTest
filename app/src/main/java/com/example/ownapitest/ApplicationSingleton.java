@@ -2,6 +2,8 @@ package com.example.ownapitest;
 
 import android.app.Application;
 
+import com.example.ownapitest.Model.User;
+
 public class ApplicationSingleton extends Application {
     public User currentUser;
 

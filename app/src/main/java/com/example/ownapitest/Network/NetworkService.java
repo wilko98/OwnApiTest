@@ -1,5 +1,6 @@
-package com.example.ownapitest;
+package com.example.ownapitest.Network;
 
+import com.example.ownapitest.BuildConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

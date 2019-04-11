@@ -1,4 +1,4 @@
-package com.example.ownapitest;
+package com.example.ownapitest.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.ownapitest.ApplicationSingleton;
+import com.example.ownapitest.Model.User;
+import com.example.ownapitest.R;
 
 public class ProfileFragment extends Fragment {
 

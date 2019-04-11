@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFC31"
+    android:background="@color/colorAccent"
     android:padding="0dp"
     >
     <android.support.v7.widget.AppCompatImageView
@@ -14,13 +14,13 @@
         android:id="@+id/btn_sign_in"
         android:text="@string/sign_in"
         android:layout_above="@id/btn_sign_up"
-        android:background="#E94F37"
+        android:background="@color/colorAccentRed"
         style="@style/largeButtonStyle"
         />
     <Button
         android:id="@+id/btn_sign_up"
         style="@style/largeButtonStyle"
-        android:background="#393E41"
+        android:background="@color/colorAccentBlack"
         android:text="@string/sign_up"
         android:layout_alignParentBottom="true"
         />
