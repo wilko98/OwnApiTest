@@ -14,4 +14,6 @@ public interface TamerlanApi {
     @POST("login.php")
     Call<User> login(@Body User user);
 
+    @POST("change.php")
+    Call<User> change(@Body User newUser,User oldUser);
 }

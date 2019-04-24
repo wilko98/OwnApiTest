@@ -30,6 +30,7 @@ class LoginFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v:View = inflater.inflate(R.layout.fr_login,container,false)
         return v

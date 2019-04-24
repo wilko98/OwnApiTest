@@ -7,20 +7,24 @@ import org.jetbrains.annotations.Nullable;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    @SerializedName("fullname")
+    @SerializedName("full_name")
     private String mName;
-    @SerializedName("login")
-    private String mLogin;
+
     @SerializedName("email")
     private String mEmail;
+
     @SerializedName("password")
     private String mPassword;
+
+    @SerializedName("login")
+    private String mLogin;
+
     @SerializedName("error_msg")
     private String mError;
 
 
 
-    public User(String email, @Nullable String name, String password) {
+    public User(String email, String name, String password) {
         mEmail = email;
         mName = name;
         mPassword = password;

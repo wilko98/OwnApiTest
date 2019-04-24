@@ -31,12 +31,13 @@ public class RegistrationFragment extends Fragment {
     private TextView mSecondPassword;
 
     public static RegistrationFragment newInstance() {
-
         Bundle args = new Bundle();
         RegistrationFragment fragment = new RegistrationFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

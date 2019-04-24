@@ -19,7 +19,7 @@ import retrofit2.Response
 class SgnInFragment : Fragment() {
 
     companion object {
-        public fun newInstance(): SgnInFragment {
+        fun newInstance(): SgnInFragment {
             return SgnInFragment()
         }
     }
